@@ -1,0 +1,106 @@
+
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Projecttask</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">projecttask</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+      <div class="row g-3" >
+        <div class="col-lg-4">
+          <label for="inputState" class="form-label">Projectname:</label>
+          <select id="inputState" class="form-select" [(ngModel)]="projectname" (change)="changed()" >
+            <option  value="">Choose...</option>
+            <option *ngFor="let project of projectdata;" value="{{project.name}}">{{project.name}}</option>
+
+            <!-- <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option> -->
+
+          </select>
+        </div>
+        <br>
+        <div class="col-lg-4">
+          <label for="inputState" class="form-label">Employeename:</label>
+          <select id="inputState" class="form-select" [(ngModel)]="employeename" (change)="changed()">
+            <option value="">Choose...</option>
+            <option *ngFor="let employee of employees;" value="{{employee.name}}">{{employee.name}}</option>
+
+            <!-- <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option> -->
+
+          </select>
+        </div>
+        <div class="col-lg-4">
+          <label for="inputState" class="form-label">Stetus:</label>
+          <select id="inputState" class="form-select" [(ngModel)]="stetus" (change)="changed()" >
+            <option  value="">Choose...</option>
+            <option  value="Pending">Pending</option>
+            <option  value="Completed">Completed</option>
+            <!-- <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option> -->
+
+          </select>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <label for="inputState" class="form-label">Date:</label>
+            <mat-form-field>
+
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date">
+                <input matEndDate placeholder="End date">
+              </mat-date-range-input>
+
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div>
+          <button class="btn btn-primary" type="reset" (click)="reset()">reset</button>&nbsp;
+
+          <button class="btn btn-danger" (click)="Print('printdiv')">print</button>&nbsp;
+
+          <button class="btn btn-primary" (click)="exportexcel()">Excel</button>&nbsp;
+
+        </div>
+
+
+      </div>
+
+    </div>
+    <div id="printdiv">
+    <table id="excel-table" class="table table-secondary text-center shadow p-3 mb-5 bg-body rounded">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>projectname</th>
+          <th>employeename</th>
+          <th>projectmodule</th>
+          <th>projecttask</th>
+          <th>status</th>
+
+        </tr>
+       </thead>
+
+      <tbody>
+        <tr *ngFor="let report  of reportlist;let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{report.projectname}}</td>
+          <td>{{report.employeename}}</td>
+          <td>{{report.modulename}}</td>
+          <td>{{report.projecttasks}}</td>
+          <td>{{report.projectstatus}}</td>
+         </tr>
+      </tbody>
+    </table>
+  </div>
+  </section>
+</main>

@@ -1,0 +1,19 @@
+.main{
+  box-shadow: 2px 2px 3px wheat;
+}
+.table{
+  width: 100%;
+  text-align: center;
+}
+.demo{
+  box-shadow: 2px 2px 3px black;
+  border: 1px double black;
+  text-align: center;
+}
+th{
+  border: 1px solid black;
+
+}
+td{
+  border: 1px solid black;
+}

@@ -1,0 +1,107 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Project</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Project
+
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row" class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+
+<form [formGroup]="projectdata" (ngSubmit)="submitdata(projectdata.value)">
+  <div class="col-md-4">
+    <label for="inputEmail4" class="form-label">Name:</label>
+    <input type="text" formControlName="name" class="form-control" id="inputEmail4">
+  </div>
+  <br>
+  <div class="col-md-12">
+      <label for="comment">Description:</label>
+      <textarea class="form-control" formControlName="descreption" rows="5" id="comment" name="text"></textarea>
+  </div>
+  <br>
+  <div class="row">
+  <div class="col-lg-6">
+    <label for="inputAddress2" class="form-label">StartDate:</label>
+    <mat-form-field class="example-full-width">
+      <mat-label>Start date</mat-label>
+      <input matInput [matDatepicker]="startdate">
+
+      <mat-datepicker-toggle matIconSuffix [for]="startdate">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #startdate></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+  <br>
+  <div class="col-lg-6">
+    <label for="inputCity" class="form-label">TargetDate:</label>
+    <mat-form-field class="example-full-width">
+      <mat-label>Target date</mat-label>
+      <input matInput [matDatepicker]="targetdate">
+
+      <mat-datepicker-toggle matIconSuffix [for]="targetdate">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #targetdate></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+</div>
+  <br>
+  <div class="col-md-4">
+    <label for="inputZip" class="form-label">Manager:</label>
+    <select id="inputState" formControlName="manegerid"  class="form-select">
+      <option selected>Choose...</option>
+      <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option>
+
+    </select>
+  </div>
+  <br>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </div>
+</form>
+</div>
+
+
+<br>
+<br>
+<br>
+<hr>
+<table class="demo table">
+  <tr broder="1">
+  <th>sr no</th>
+  <th>name</th>
+  <th>description</th>
+  <th>startdate</th>
+  <th>targetdate</th>
+  <th>maneger</th>
+  <th >Action</th>
+  <th>Addmodule</th>
+</tr>
+<tr *ngFor="let project of projects;let i = index">
+  <td>{{i + 1}}</td>
+  <td>{{project.name}}</td>
+  <td>{{project.descreption}}</td>
+  <td>{{project.startdate | date}}</td>
+  <td>{{project.targetdate | date}}</td>
+  <td>{{project.maneger.name}}</td>
+  <td>
+    <button style="box-shadow: 1px 1px 2px black;" type="submit" (click)="Edit(project.id)"  class="btn btn-primary">Edit</button>
+
+    <button style="box-shadow: 1px 1px 2px black;" type="submit"  (click)="Delete(project.id)"  class="btn btn-primary">Delete</button>
+</td>
+<td>
+  <button style="box-shadow: 1px 1px 2px black;" type="submit" routerLink="projectmodules/{{project.id}}/{{project.manegerid}}"   class="btn btn-primary">Addmodule</button>
+</td>
+</tr>
+
+
+</table>

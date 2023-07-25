@@ -1,0 +1,143 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Projecttask</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">projecttask</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+      <form class="row g-3" [formGroup]="taskdata" (ngSubmit)="logindata(taskdata.value)">
+        <div class="col-md-8">
+          <div class="col-lg-6" style="float: right;">
+            <h2>{{projectlogin.name}}</h2>
+
+          </div>
+          <div class="col-lg-6 ">
+            <h2>{{module.name}}</h2>
+
+          </div>
+          <label for="inputPassword4" class="form-label">Task</label>
+          <input  class="form-control" id="iflonputPassword4" formControlName="task">
+        </div>
+        <div class="col-md-1"></div>
+        <!-- <div class="col-md-5">
+          <label for="inputState" class="form-label">Manager</label>
+          <select id="inputState" class="form-select" formControlName="managerid">
+            <option selected value="">Choose...</option>
+            <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option>
+
+          </select>
+        </div> -->
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Start Date</label>
+          <mat-form-field class="example-full-width">
+
+            <input matInput [matDatepicker]="startdate">
+
+            <mat-datepicker-toggle matIconSuffix [for]="startdate">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #startdate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">End Date</label>
+          <mat-form-field class="example-full-width">
+            
+            <input matInput [matDatepicker]="enddate">
+
+            <mat-datepicker-toggle matIconSuffix [for]="enddate">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #enddate></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Start Time</label>
+          <input type="time" class="form-control" id="inputAddress2" formControlName="starttime">
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">End Time</label>
+          <input type="time" class="form-control" id="inputAddress2" formControlName="endtime">
+        </div>
+
+        <div class="col-md-11">
+          <label for="inputCity" class="form-label">Description</label>
+          <textarea class="form-control" rows="5" formControlName="description"></textarea>
+          <!-- <input type="t" class="form-control" id="inputCity" formControlName="email"> -->
+        </div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Duration</label>
+          <input type="text" class="form-control" id="inputAddress2" formControlName="duration">
+        </div>
+        <div class="col-md-1"></div>
+
+         <div class="col-md-5">
+          <label for="inputState" class="form-label">Status</label>
+          <select id="inputState" class="form-select" formControlName="stetus">
+            <option selected value="">Choose...</option>
+            <option  value="Pending">Pending</option>
+            <option  value="Working">Working</option>
+            <option  value="Completed">Completed</option>
+            <!-- <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option> -->
+
+          </select>
+        </div>
+
+        <div class="col-6 text-end mb-3 mt-5">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+
+    </div>
+
+    <table class="table table-secondary text-center shadow p-3 mb-5 bg-body rounded">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>Task</th>
+          <th>Startdate</th>
+          <th>Enddate</th>
+          <th>Starttime</th>
+          <th>Endtime</th>
+          <th>Description</th>
+          <th>Duration</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let project of projectdata;let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{project.task}}</td>
+          <td>{{project.startdate  | date}}</td>
+          <td>{{project.enddate | date}}</td>
+          <td>{{project.starttime}}</td>
+          <td>{{project.endtime}}</td>
+          <td>{{project.description}}</td>
+           <td>{{project.duration}}</td>
+            <td>{{project.stetus}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="Edit(project.id)">Edit</button>
+            <button class="btn btn-danger" (click)="Delete(project.id)">Delete</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </section>

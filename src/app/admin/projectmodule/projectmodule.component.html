@@ -1,0 +1,67 @@
+<main id="main" class="main" *ngIf="project">
+
+  <div class="pagetitle">
+    <h1>Employees</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Employees
+
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row" class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+
+
+<form  [formGroup]="moduledata" (ngSubmit)="modulesubmit(moduledata.value)">
+  <div class="col-md-4">
+    <label for="inputEmail4"  class="form-label">Module Nmae:</label>
+    <input type="text" formControlName="name" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-4">
+    <label for="inputPassword4" class="form-label">projects:</label>
+    <input id="inputState"  value="{{project.name}}" readonly  class="form-control">
+
+  </div>
+
+  <br>
+  <div class="col-12">
+    <button style="box-shadow: 1px 1px 2px black;" type="submit"  class="btn btn-primary">Sign in</button>
+  </div>
+</form>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<hr>
+
+<table class="demo table" >
+  <tr border="1">
+    <th>sr no</th>
+
+
+    <th>modulename</th>
+    <th>Action</th>
+    <th>Addtask</th>
+  </tr>
+  <tr *ngFor="let module of modules; let i = index ">
+    <td>{{i+ 1}}</td>
+
+
+    <td>{{module.name}}</td>
+    <td>
+      <button style="box-shadow: 1px 1px 2px black;" type="submit" (click)="Edit(module.id)"  class="btn btn-primary">Edit</button>
+
+      <button style="box-shadow: 1px 1px 2px black;" type="submit"  (click)="Delete(module.id)"  class="btn btn-primary">Delete</button>
+    </td>
+    <td>
+      <button style="box-shadow: 1px 1px 2px black;" type="submit" routerLink="projecttask/{{module.id}}"   class="btn btn-primary">Addtask</button>
+    </td>
+  </tr>
+</table>
+
+
